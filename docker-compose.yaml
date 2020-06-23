@@ -1,0 +1,33 @@
+version: '2'
+
+services:
+
+  console-beanstalkd.stack.dev:
+    hostname: console-beanstalkd.stack.dev
+    container_name: console-beanstalkd.stack.dev
+    image: codeviewconsultoria/beanstalkd-console
+    labels:
+      com.example.description: "Console Beanstalkd"
+      com.example.department: "IT"
+    environment:
+      - BEANSTALKD_PORT_11300_TCP_ADDR=beanstalkd.stack.dev
+    links:
+      - beanstalkd.stack.dev
+    ports:
+      - "2080:2080"  
+
+  beanstalkd.stack.dev:
+    hostname: beanstalkd.stack.dev
+    container_name: beanstalkd.stack.dev
+    image: codeviewconsultoria/beanstalkd
+    restart: always
+    labels:
+      com.example.description: "Queue Service"
+      com.example.department: "IT"
+    ports:
+      - "11300:11300"
+
+
+
+
+
